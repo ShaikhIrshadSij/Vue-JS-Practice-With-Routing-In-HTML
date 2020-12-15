@@ -1,0 +1,45 @@
+<DOCTYPE html>
+  <html>
+  <head>
+    <title>Vue Demo #1</title>
+    <meta charset='utf-8' />
+    <script src="vue/vue.min.js"></script>
+    <script src="vue-router/vue-router.min.js"></script>
+  </head>
+  <body>
+    <div id = "app">
+     <h1>Routing Example</h1>
+     <p>
+      <greeting :name="'Irshad'"></greeting>
+      <router-link to = "/">Router Link 1</router-link>
+      <router-link to = "/route2">Router Link 2</router-link>
+    </p>
+    <router-view></router-view>
+  </div>
+  <script type = "text/javascript">
+    var component1 = Vue.component('greeting', {
+      props: ['name'],
+      template: '<template><h1>Welcome to components! {{ name }}</h1></template>',
+      data: function(){
+        return {
+          name1 : 'Test'
+        }
+      }
+    });
+    var component2 = Vue.component('greeting2', {
+      template: '<h1>Welcome to components 2!</h1>'
+    });
+    const routes = [
+    { path: '', component: component1 },
+    { path: '/route2', component: component2 }
+    ];
+    const router = new VueRouter({
+      routes
+    });
+    var vm = new Vue({
+      el: '#app',
+      router
+    });
+  </script>
+</body>
+</html>
