@@ -19,10 +19,10 @@
   <script type = "text/javascript">
     var component1 = Vue.component('greeting', {
       props: ['name'],
-      template: '<template><h1>Welcome to components! {{ name }}</h1></template>',
+      template: `<template><h1>Welcome to components! {{ name }} {{ name1 }}</h1></template>`,
       data: function(){
         return {
-          name1 : 'Test'
+          name1 : this.name ? "" : "Test"
         }
       }
     });
@@ -30,8 +30,8 @@
       template: '<h1>Welcome to components 2!</h1>'
     });
     const routes = [
-    { path: '', component: component1 },
-    { path: '/route2', component: component2 }
+      { path: '', component: component1 },
+      { path: '/route2', component: component2 }
     ];
     const router = new VueRouter({
       routes
